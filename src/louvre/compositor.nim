@@ -1,9 +1,10 @@
 import std/[strutils]
-import louvre/namespaces
+import louvre/[namespaces, output, seat, factory_object]
+import pkg/cppstl/std_vector
 
 {.push header: "<LCompositor.h>".}
 type
-  CompositorState* {.importcpp: "Louvre::LCompositor::CompositorState".} = enum
+  CompositorState* {.importcpp: "Louvre::LCompositor::CompositorState", pure.} = enum
     Uninitialized
     Initializing
     Initialized
@@ -13,13 +14,21 @@ type
     Resuming
 
   Compositor* {.importcpp: "Louvre::LCompositor", inheritable.} = object
-    version*: Version
 
-func version*(compositor: Compositor): Version {.importcpp: "Louvre::LCompositor::version".}
-func state*(compositor: Compositor): CompositorState {.importcpp: "Louvre::LCompositor::state".}
+func getVersion*(compositor: Compositor): Version {.importcpp: "Louvre::LCompositor::version".}
+func getState*(compositor: Compositor): CompositorState {.importcpp: "Louvre::LCompositor::state".}
+func outputs*(compositor: Compositor): CppVector[ptr Output] {.importcpp: "Louvre::LCompositor::outputs".}
+func getSeat*(compositor: Compositor): ptr Seat {.importcpp: "Louvre::LCompositor::seat".}
 
 proc start*(compositor: var Compositor): bool {.importcpp: "Louvre::LCompositor::start".}
 proc processLoop*(compositor: var Compositor, msTimeout: int32) {.importcpp: "Louvre::LCompositor::processLoop".}
-proc initialized*(compositor: var Compositor) {.importcpp: "Louvre::LCompositor::initialized".}
+
+proc initialized*(compositor: ptr Compositor) {.importcpp: "Louvre::LCompositor::initialized", member.}
+proc createObjectRequest*(compositor: ptr Compositor, objectType: FactoryObjectType, params: pointer): ptr FactoryObject {.importcpp: "Louvre::LCompositor::createObjectRequest", member.}
 
 {.pop.}
+
+func getOutputs*(compositor: Compositor): seq[ptr Output] {.inline.} =
+  compositor
+    .outputs()
+    .toSeq()
