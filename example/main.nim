@@ -1,47 +1,52 @@
-import std/os
+import std/[os, logging]
 import louvre
 import cppstl/[std_string, std_smartptrs]
 
 {.pragma: immutable, codegenDecl: "const $1 $2".}
 
 type
-  NimSeat {.final.} = object of Seat
+  NimSeat = object of Seat
   NimWM = object of Compositor
 
-proc makeNimSeat(params: pointer): Seat {.importcpp: "`NimSeat`::`NimSeat`(#)", constructor.}
-
-proc outputPlugged(seat: ptr NimSeat, output: ptr Output) {.virtual, member.} =
-  echo "output plugged!!!!"
+proc outputPlugged(seat: ptr NimSeat, output: ptr Output) {.virtual.} =
+  assert off
   outputPlugged(cast[ptr Seat](seat), output)
 
-proc initialized(compositor: ptr NimWM) {.virtual, member.} =
-  echo "Initialized!"
+proc onEvent(seat: ptr NimSeat, event {.immutable.}: var Event) {.virtual.} =
+  assert off
+  echo event.type
+  echo event.subtype
+
+proc initialized(compositor: ptr NimWM) {.virtual.} =
+  info "Initialized!"
   
   var comp = cast[ptr Compositor](compositor)
-  var seat = comp[].getSeat()
+  var seat = cast[ptr NimSeat](comp[].getSeat())
   let name = seat[].getName()
   var outputs = seat[].getOutputs()
   
-  echo name
+  echo "Seat name: " & name
+  echo "Num of outputs: " & $outputs.len
 
-  for output in outputs:
-    echo output[].getState()
+  comp.initialized()
 
-  initialized(cast[ptr Compositor](compositor))
+  for i, output in outputs:
+    echo "> Output " & $i & ": " & $output[].getState()
 
 proc createObjectRequest(compositor: ptr NimWM, objectType: FactoryObjectType, params {.immutable.}: pointer): ptr FactoryObject {.virtual.} =
   if objectType == LSeat:
     echo "create NimSeat"
-    var value = makeNimSeat(params)
-    var obj = FactoryObject(value)
-
-    return cppNew(NimSeat, params)
+    
+    var seat = constructSeat(NimSeat, params)
+    echo typeof seat
+    return seat
 
   echo "Can't instantiate: " & $objectType
   return nil
 
 proc main =
   putEnv("LOUVRE_WAYLAND_DISPLAY", "wayland-2")
+  initLouvreLogger()
   startLaunchDaemon()
 
   var compositor = makeUnique(NimWM)

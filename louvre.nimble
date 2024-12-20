@@ -12,3 +12,4 @@ srcDir        = "src"
 requires "nim >= 2.0.0"
 
 requires "cppstl >= 0.7.0"
+requires "colored_logger >= 0.1.0"

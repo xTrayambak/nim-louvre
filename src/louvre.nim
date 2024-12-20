@@ -15,6 +15,6 @@
 when not defined(cpp):
   {.error: "This library only supports the C++ backend!".}
 
-import louvre/[compositor, namespaces, launcher, output, gpu, seat, factory_object, utils]
+import louvre/[compositor, namespaces, launcher, output, gpu, seat, factory_object, utils, event, log]
 
-export compositor, namespaces, launcher, output, gpu, seat, factory_object, utils
+export compositor, namespaces, launcher, output, gpu, seat, factory_object, utils, event, log

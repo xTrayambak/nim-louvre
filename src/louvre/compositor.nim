@@ -23,8 +23,12 @@ func getSeat*(compositor: Compositor): ptr Seat {.importcpp: "Louvre::LComposito
 proc start*(compositor: var Compositor): bool {.importcpp: "Louvre::LCompositor::start".}
 proc processLoop*(compositor: var Compositor, msTimeout: int32) {.importcpp: "Louvre::LCompositor::processLoop".}
 
-proc initialized*(compositor: ptr Compositor) {.importcpp: "Louvre::LCompositor::initialized", member.}
-proc createObjectRequest*(compositor: ptr Compositor, objectType: FactoryObjectType, params: pointer): ptr FactoryObject {.importcpp: "Louvre::LCompositor::createObjectRequest", member.}
+proc initialized*(compositor: ptr Compositor) {.importcpp: "Louvre::LCompositor::initialized".}
+proc createObjectRequest*(
+  compositor: ptr Compositor,
+  objectType: FactoryObjectType,
+  params: pointer
+): ptr FactoryObject {.importcpp: "Louvre::LCompositor::createObjectRequest".}
 
 {.pop.}
 

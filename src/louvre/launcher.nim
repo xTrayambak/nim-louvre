@@ -6,10 +6,10 @@ import pkg/cppstl/std_string
 type
   Launcher* {.importcpp: "Louvre::LLauncher".} = object
 
-proc startDaemon*(launcher: Launcher, name: CppString) {.importcpp: "Louvre::LLauncher::startDaemon".}
-proc pid*(launcher: Launcher): Pid {.importcpp: "Louvre::LLauncher::pid".}
-proc launch*(launcher: Launcher, command: CppString) {.importcpp: "Louvre::LLauncher::launch".}
-proc stopDaemon*(launcher: Launcher) {.importcpp: "Louvre::LLauncher::stopDaemon".}
+proc startDaemon(launcher: Launcher, name: CppString) {.importcpp: "Louvre::LLauncher::startDaemon".}
+proc pid(launcher: Launcher): Pid {.importcpp: "Louvre::LLauncher::pid".}
+proc launch(launcher: Launcher, command: CppString) {.importcpp: "Louvre::LLauncher::launch".}
+proc stopDaemon(launcher: Launcher) {.importcpp: "Louvre::LLauncher::stopDaemon".}
 
 {.pop.}
 
