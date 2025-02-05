@@ -1,4 +1,4 @@
-import ./[scene_view, output]
+import louvre/[scene_view, output]
 
 {.push header: "<LScene.h>".}
 

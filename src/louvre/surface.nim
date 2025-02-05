@@ -1,5 +1,5 @@
 import std/logging
-import ./[toplevel, point, output]
+import louvre/[toplevel, point, output]
 import pkg/cppstl/std_vector
 
 {.push header: "<LSurface.h>".}
@@ -27,7 +27,6 @@ func outputs(surf: ptr Surface): CppVector[ptr Output] {.importcpp: "Louvre::LSu
 proc `minimized=`*(surf: ptr Surface, state: bool) {.importcpp: "Louvre::LSurface::setMinimized".}
 proc `maximized=`*(surf: ptr Surface, state: bool) {.importcpp: "Louvre::LSurface::setMaximized".}
 func hasPointerFocus*(surf: Surface): bool {.importcpp: "Louvre::LSurface::hasPointerFocus".}
-proc getViews*(surf: Surface): CppVector[ptr SurfaceView]
 func hasKeyboardFocus*(surf: Surface): bool {.importcpp: "Louvre::LSurface::hasKeyboardFocus".}
 func hasKeyboardGrab*(surf: Surface): bool {.importcpp: "Louvre::LSurface::hasKeyboardGrab".}
 proc requestNextFrame*(surf: ptr Surface, clearDamage: bool = true) {.importcpp: "Louvre::LSurface::requestNextFrame".}

@@ -1,4 +1,4 @@
-import ./[surface, keyboard_key_event, factory_object]
+import louvre/[surface, keyboard_key_event, factory_object]
 import pkg/cppstl/std_vector
 
 {.pragma: immutable, codegenDecl: "const $1 $2".}

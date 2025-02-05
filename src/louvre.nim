@@ -17,8 +17,8 @@ when not defined(cpp):
 
 import louvre/[
   compositor, namespaces, launcher, output, gpu, seat, factory_object, utils, event, log, point,
-  surface, toplevel, scene, view, scene_view, colors, keyboard, keyboard_key_event, opengl
+  surface, toplevel, scene, view, scene_view, colors, keyboard, keyboard_key_event, opengl,   surface_view
 ]
 
 export compositor, namespaces, launcher, output, gpu, seat, factory_object, utils, event, log, surface, point, toplevel, scene, view, scene_view, colors,
-       keyboard, keyboard_key_event, opengl
+       keyboard, keyboard_key_event, opengl, surface_view
