@@ -1,4 +1,4 @@
-import louvre/[gpu, output, factory_object, event]
+import ./[gpu, output, factory_object, event]
 import pkg/cppstl/std_vector
 
 {.push header: "<LSeat.h>".}

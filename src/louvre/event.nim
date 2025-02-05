@@ -1,4 +1,4 @@
-import louvre/namespaces
+import ./namespaces
 
 {.push header: "<LEvent.h>".}
 
