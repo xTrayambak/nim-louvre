@@ -45,11 +45,11 @@ func descriptionInternal(output: Output): cstring {.importcpp: "Louvre::LOutput:
 proc constructOutput*[T](typ: typedesc[T], params {.immutable.}: pointer): ptr T {.importcpp: "('1*)(new Louvre::LOutput(@))".}
 
 # Virtual methods
-proc initializeGL*(output: ptr Output) {.importcpp: "Louvre::LOutput::initializeGL", member.}
-proc paintGL*(output: ptr Output) {.importcpp: "Louvre::LOutput::paintGL", member.}
-proc moveGL*(output: ptr Output) {.importcpp: "Louvre::LOutput::moveGL", member.}
-proc resizeGL*(output: ptr Output) {.importcpp: "Louvre::LOutput::resizeGL", member.}
-proc uninitializeGL*(output: ptr Output) {.importcpp: "Louvre::LOutput::uninitializeGL", member.}
+proc initializeGL*(output: ptr Output) {.importcpp: "Louvre::LOutput::initializeGL".}
+proc paintGL*(output: ptr Output) {.importcpp: "Louvre::LOutput::paintGL".}
+proc moveGL*(output: ptr Output) {.importcpp: "Louvre::LOutput::moveGL".}
+proc resizeGL*(output: ptr Output) {.importcpp: "Louvre::LOutput::resizeGL".}
+proc uninitializeGL*(output: ptr Output) {.importcpp: "Louvre::LOutput::uninitializeGL".}
 
 {.pop.}
 

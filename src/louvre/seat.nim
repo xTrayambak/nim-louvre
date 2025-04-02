@@ -13,8 +13,8 @@ func outputs(seat: var Seat): CppVector[ptr Output] {.importcpp: "Louvre::LSeat:
 func name(seat: var Seat): cstring {.importcpp: "Louvre::LSeat::name".}
 proc makeSeat*(params: pointer): Seat {.importcpp: "Louvre::LSeat::LSeat(#)", constructor.}
 
-proc outputPlugged*(seat: ptr Seat, output: ptr Output) {.importcpp: "Louvre::LSeat::outputPlugged", member.}
-proc onEvent*(seat: ptr Seat, event {.immutable.}: var Event) {.importcpp: "Louvre::LSeat::onEvent", member.}
+proc outputPlugged*(seat: ptr Seat, output: ptr Output) {.importcpp: "Louvre::LSeat::outputPlugged".}
+proc onEvent*(seat: ptr Seat, event {.immutable.}: var Event) {.importcpp: "Louvre::LSeat::onEvent".}
 
 {.pop.}
 

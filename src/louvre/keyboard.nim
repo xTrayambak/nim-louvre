@@ -15,8 +15,8 @@ func pressed*(keyboard: Keyboard, keyCode: uint32): bool {.importcpp: "Louvre::L
 func pressedKeysInternal(keyboard: Keyboard): CppVector[uint32] {.importcpp: "Louvre::LKeyboard::pressedKeys".}
 
 # Virtual methods
-proc keyEvent*(keyboard: ptr Keyboard, event {.immutable.}: var KeyboardKeyEvent) {.importcpp: "Louvre::LKeyboard::keyEvent", member.}
-proc focusChanged*(keyboard: ptr Keyboard) {.importcpp: "Louvre::LKeyboard::focusChanged", member.}
+proc keyEvent*(keyboard: ptr Keyboard, event {.immutable.}: var KeyboardKeyEvent) {.importcpp: "Louvre::LKeyboard::keyEvent".}
+proc focusChanged*(keyboard: ptr Keyboard) {.importcpp: "Louvre::LKeyboard::focusChanged".}
 
 {.pop.}
 
