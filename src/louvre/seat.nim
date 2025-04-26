@@ -24,6 +24,10 @@ proc onEvent*(
   seat: ptr Seat, event {.immutable.}: var Event
 ) {.importcpp: "Louvre::LSeat::onEvent".}
 
+# Virtual methods
+proc nativeInputEvent*(seat: ptr Seat, event: pointer): void {.importc: "Louvre::LSeat::nativeInputEvent".}
+proc eventFilter*(seat: ptr Seat, event: var Event): bool {.importc: "Louvre::LSeat::eventFilter".}
+
 {.pop.}
 
 func getGpus*(seat: var Seat): seq[ptr GPU] {.inline.} =
