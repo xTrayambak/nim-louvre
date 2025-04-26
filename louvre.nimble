@@ -1,6 +1,6 @@
 # Package
 
-version = "2.13.0"
+version = "2.16.3.1"
 author = "xTrayambak"
 description = "Nim bindings for Louvre"
 license = "LGPL-2.1-or-later"
