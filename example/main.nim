@@ -19,12 +19,12 @@ proc onEvent(seat: ptr NimSeat, event {.immutable.}: var Event) {.virtual.} =
 
 proc initialized(compositor: ptr NimWM) {.virtual.} =
   info "Initialized!"
-  
+
   var comp = cast[ptr Compositor](compositor)
   var seat = cast[ptr NimSeat](comp[].getSeat())
   let name = seat[].getName()
   var outputs = seat[].getOutputs()
-  
+
   echo "Seat name: " & name
   echo "Num of outputs: " & $outputs.len
 
@@ -33,10 +33,12 @@ proc initialized(compositor: ptr NimWM) {.virtual.} =
   for i, output in outputs:
     echo "> Output " & $i & ": " & $output[].getState()
 
-proc createObjectRequest(compositor: ptr NimWM, objectType: FactoryObjectType, params {.immutable.}: pointer): ptr FactoryObject {.virtual.} =
+proc createObjectRequest(
+    compositor: ptr NimWM, objectType: FactoryObjectType, params {.immutable.}: pointer
+): ptr FactoryObject {.virtual.} =
   if objectType == LSeat:
     echo "create NimSeat"
-    
+
     var seat = constructSeat(NimSeat, params)
     echo typeof seat
     return seat
@@ -44,7 +46,7 @@ proc createObjectRequest(compositor: ptr NimWM, objectType: FactoryObjectType, p
   echo "Can't instantiate: " & $objectType
   return nil
 
-proc main =
+proc main() =
   putEnv("LOUVRE_WAYLAND_DISPLAY", "wayland-2")
   initLouvreLogger()
   startLaunchDaemon()
@@ -58,7 +60,7 @@ proc main =
 
   while compositor.getState() != CompositorState.Uninitialized:
     compositor.processLoop(-1)
-  
+
   stopLaunchDaemon()
 
   echo "bye bye!"

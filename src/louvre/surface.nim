@@ -17,19 +17,44 @@ type
 
   Surface* {.importcpp: "Louvre::LSurface", inheritable.} = object
 
-proc `position=`*(surf: ptr Surface, newPos: Point) {.importcpp: "Louvre::LSurface::setPos".}
+proc `position=`*(
+  surf: ptr Surface, newPos: Point
+) {.importcpp: "Louvre::LSurface::setPos".}
+
 proc raiseSurface*(surf: ptr Surface) {.importcpp: "Louvre::LSurface::raise".}
-proc setPosition*(surf: ptr Surface, x, y: int32) {.importcpp: "Louvre::LSurface::setPos".}
+proc setPosition*(
+  surf: ptr Surface, x, y: int32
+) {.importcpp: "Louvre::LSurface::setPos".}
+
 func getSize*(surf: Surface): Size {.importcpp: "Louvre::LSurface::size".}
 func getRoleId*(surf: Surface): SurfaceRole {.importcpp: "Louvre::LSurface::roleId".}
-func getToplevel*(surf: ptr Surface): ptr Toplevel {.importcpp: "Louvre::LSurface::toplevel".}
-func outputs(surf: ptr Surface): CppVector[ptr Output] {.importcpp: "Louvre::LSurface::outputs".}
-proc `minimized=`*(surf: ptr Surface, state: bool) {.importcpp: "Louvre::LSurface::setMinimized".}
-proc `maximized=`*(surf: ptr Surface, state: bool) {.importcpp: "Louvre::LSurface::setMaximized".}
-func hasPointerFocus*(surf: Surface): bool {.importcpp: "Louvre::LSurface::hasPointerFocus".}
-func hasKeyboardFocus*(surf: Surface): bool {.importcpp: "Louvre::LSurface::hasKeyboardFocus".}
-func hasKeyboardGrab*(surf: Surface): bool {.importcpp: "Louvre::LSurface::hasKeyboardGrab".}
-proc requestNextFrame*(surf: ptr Surface, clearDamage: bool = true) {.importcpp: "Louvre::LSurface::requestNextFrame".}
+func getToplevel*(
+  surf: ptr Surface
+): ptr Toplevel {.importcpp: "Louvre::LSurface::toplevel".}
+func outputs(
+  surf: ptr Surface
+): CppVector[ptr Output] {.importcpp: "Louvre::LSurface::outputs".}
+proc `minimized=`*(
+  surf: ptr Surface, state: bool
+) {.importcpp: "Louvre::LSurface::setMinimized".}
+
+proc `maximized=`*(
+  surf: ptr Surface, state: bool
+) {.importcpp: "Louvre::LSurface::setMaximized".}
+
+func hasPointerFocus*(
+  surf: Surface
+): bool {.importcpp: "Louvre::LSurface::hasPointerFocus".}
+func hasKeyboardFocus*(
+  surf: Surface
+): bool {.importcpp: "Louvre::LSurface::hasKeyboardFocus".}
+func hasKeyboardGrab*(
+  surf: Surface
+): bool {.importcpp: "Louvre::LSurface::hasKeyboardGrab".}
+proc requestNextFrame*(
+  surf: ptr Surface, clearDamage: bool = true
+) {.importcpp: "Louvre::LSurface::requestNextFrame".}
+
 func preferVSync*(surf: Surface): bool {.importcpp: "Louvre::LSurface::preferVSync".}
 
 {.pop.}
@@ -61,6 +86,4 @@ func focused*(surf: Surface): bool {.inline.} =
   surf.hasPointerFocus() or surf.hasKeyboardFocus()
 
 func getOutputs*(surf: ptr Surface): seq[ptr Output] {.inline.} =
-  surf
-    .outputs()
-    .toSeq()
+  surf.outputs().toSeq()

@@ -23,24 +23,47 @@ type
 
   Toplevel* {.importcpp: "Louvre::LToplevelRole", inheritable.} = object
 
-proc configureSize*(toplevel: ptr Toplevel, size: Size) {.importcpp: "Louvre::LToplevelRole::configureSize".}
+proc configureSize*(
+  toplevel: ptr Toplevel, size: Size
+) {.importcpp: "Louvre::LToplevelRole::configureSize".}
   ## Configure the toplevel's size. If either width or height are zero, the client is free to pick its own size.
   ## Keep in mind that the client can choose to not respect this, and also that it is asynchronous so it isn't necessary that the client
   ## will resize immediately.
-proc configureSize*(toplevel: ptr Toplevel, x, y: uint32) {.importcpp: "Louvre::LToplevelRole::configureSize".}
 
-proc configureBounds*(toplevel: ptr Toplevel, bounds: Size) {.importcpp: "Louvre::LToplevelRole::configureBounds".}
-func isMaximized*(toplevel: ptr Toplevel): bool {.importcpp: "Louvre::LToplevelRole::maximized".}
-func isFullscreen*(toplevel: ptr Toplevel): bool {.importcpp: "Louvre::LToplevelRole::fullscreen".}
-func getDecorationMode*(toplevel: ptr Toplevel): ToplevelDecorationMode {.importcpp: "Louvre::LToplevelRole::decorationMode".}
-func supportsSSD*(toplevel: ptr Toplevel): bool {.importcpp: "Louvre::LToplevelRole::supportServerSideDecorations".}
+proc configureSize*(
+  toplevel: ptr Toplevel, x, y: uint32
+) {.importcpp: "Louvre::LToplevelRole::configureSize".}
+
+proc configureBounds*(
+  toplevel: ptr Toplevel, bounds: Size
+) {.importcpp: "Louvre::LToplevelRole::configureBounds".}
+
+func isMaximized*(
+  toplevel: ptr Toplevel
+): bool {.importcpp: "Louvre::LToplevelRole::maximized".}
+func isFullscreen*(
+  toplevel: ptr Toplevel
+): bool {.importcpp: "Louvre::LToplevelRole::fullscreen".}
+func getDecorationMode*(
+  toplevel: ptr Toplevel
+): ToplevelDecorationMode {.importcpp: "Louvre::LToplevelRole::decorationMode".}
+func supportsSSD*(
+  toplevel: ptr Toplevel
+): bool {.importcpp: "Louvre::LToplevelRole::supportServerSideDecorations".}
   ## This function returns `true` if this toplevel supports
   ## server-side decorations. If not, it returns `false`.
-proc setExclusiveOutput*(toplevel: ptr Toplevel, output: ptr Output) {.importcpp: "Louvre::LToplevelRole::setExclusiveOutput".}
+proc setExclusiveOutput*(
+  toplevel: ptr Toplevel, output: ptr Output
+) {.importcpp: "Louvre::LToplevelRole::setExclusiveOutput".}
   ## Prevent this toplevel from being painted on other outputs.
-func getExclusiveOutput*(toplevel: ptr Toplevel): ptr Output {.importcpp: "Louvre::LToplevelRole::exclusiveOutput".}
+
+func getExclusiveOutput*(
+  toplevel: ptr Toplevel
+): ptr Output {.importcpp: "Louvre::LToplevelRole::exclusiveOutput".}
   ## Returns the currently set exclusive output, or `nil` if none is set.
-func appId(toplevel: ptr Toplevel): CppString {.importcpp: "Louvre::LToplevelRole::appId".}
+func appId(
+  toplevel: ptr Toplevel
+): CppString {.importcpp: "Louvre::LToplevelRole::appId".}
 proc close*(toplevel: ptr Toplevel) {.importcpp: "Louvre::LToplevelRole::close".}
 
 {.pop.}
@@ -51,5 +74,5 @@ func getAppId*(toplevel: ptr Toplevel): string {.inline.} =
   ## 
   ## Note: This isn't a sure-shot way of knowing what app this toplevel belongs to
   ## as there is nothing preventing apps from spoofing it.
-  appId(toplevel)
-    .toString()
+
+  appId(toplevel).toString()

@@ -32,13 +32,14 @@ proc initLouvreLogger*(threshold: Level = lvlAll) {.inline.} =
 
   putEnv(
     "LOUVRE_DEBUG",
-    $(case threshold
-    of lvlAll, lvlDebug, lvlNotice, lvlNone: 4
-    of lvlWarn: 3
-    of lvlError: 2
-    of lvlFatal: 1
-    of lvlInfo: 0
-    )
+    $(
+      case threshold
+      of lvlAll, lvlDebug, lvlNotice, lvlNone: 4
+      of lvlWarn: 3
+      of lvlError: 2
+      of lvlFatal: 1
+      of lvlInfo: 0
+    ),
   )
 
 proc logImpl(message: string) {.inline.} =
@@ -61,10 +62,17 @@ method log*(logger: LouvreLogger, level: Level, args: varargs[string, `$`]) =
   for arg in args:
     str &= arg & ' '
   case level
-  of lvlInfo: logImpl(str)
-  of lvlWarn: warningImpl(str)
-  of lvlDebug: debugImpl(str)
-  of lvlFatal: fatalImpl(str)
-  of lvlAll, lvlNotice: logImpl(str)
-  of lvlError: errorImpl(str)
-  of lvlNone: assert(false)
+  of lvlInfo:
+    logImpl(str)
+  of lvlWarn:
+    warningImpl(str)
+  of lvlDebug:
+    debugImpl(str)
+  of lvlFatal:
+    fatalImpl(str)
+  of lvlAll, lvlNotice:
+    logImpl(str)
+  of lvlError:
+    errorImpl(str)
+  of lvlNone:
+    assert(false)

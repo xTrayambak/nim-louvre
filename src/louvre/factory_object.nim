@@ -24,6 +24,8 @@ type
 
   FactoryObject* {.importcpp: "Louvre::LFactoryObject", inheritable.} = object
 
-func getFactoryObjectType*(obj: FactoryObject): FactoryObjectType {.importcpp: "Louvre::LFactoryObject::factoryObjectType".}
+func getFactoryObjectType*(
+  obj: FactoryObject
+): FactoryObjectType {.importcpp: "Louvre::LFactoryObject::factoryObjectType".}
 
 {.pop.}

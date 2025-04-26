@@ -15,24 +15,47 @@ type
 
   Compositor* {.importcpp: "Louvre::LCompositor", inheritable.} = object
 
-func getVersion*(compositor: Compositor): Version {.importcpp: "Louvre::LCompositor::version".}
-func getState*(compositor: Compositor): CompositorState {.importcpp: "Louvre::LCompositor::state".}
-func outputs*(compositor: Compositor): CppVector[ptr Output] {.importcpp: "Louvre::LCompositor::outputs".}
-func getSeat*(compositor: Compositor): ptr Seat {.importcpp: "Louvre::LCompositor::seat".}
-proc surfaces(compositor: Compositor): List[ptr Surface] {.importcpp: "Louvre::LCompositor::surfaces".}
+func getVersion*(
+  compositor: Compositor
+): Version {.importcpp: "Louvre::LCompositor::version".}
+func getState*(
+  compositor: Compositor
+): CompositorState {.importcpp: "Louvre::LCompositor::state".}
+func outputs*(
+  compositor: Compositor
+): CppVector[ptr Output] {.importcpp: "Louvre::LCompositor::outputs".}
+func getSeat*(
+  compositor: Compositor
+): ptr Seat {.importcpp: "Louvre::LCompositor::seat".}
+proc surfaces(
+  compositor: Compositor
+): List[ptr Surface] {.importcpp: "Louvre::LCompositor::surfaces".}
 
 proc getCompositor*(): ptr Compositor {.importcpp: "Louvre::compositor".}
 
-proc start*(compositor: var Compositor): bool {.importcpp: "Louvre::LCompositor::start".}
-proc processLoop*(compositor: var Compositor, msTimeout: int32) {.importcpp: "Louvre::LCompositor::processLoop".}
+proc start*(
+  compositor: var Compositor
+): bool {.importcpp: "Louvre::LCompositor::start".}
 
-proc initialized*(compositor: ptr Compositor) {.importcpp: "Louvre::LCompositor::initialized".}
+proc processLoop*(
+  compositor: var Compositor, msTimeout: int32
+) {.importcpp: "Louvre::LCompositor::processLoop".}
+
+proc initialized*(
+  compositor: ptr Compositor
+) {.importcpp: "Louvre::LCompositor::initialized".}
+
 proc createObjectRequest*(
-  compositor: ptr Compositor,
-  objectType: FactoryObjectType,
-  params: pointer
+  compositor: ptr Compositor, objectType: FactoryObjectType, params: pointer
 ): ptr FactoryObject {.importcpp: "Louvre::LCompositor::createObjectRequest".}
-proc addOutputInternal(compositor: ptr Compositor, output: ptr Output): bool {.importcpp: "Louvre::LCompositor::addOutput".}
+
+proc addOutputInternal(
+  compositor: ptr Compositor, output: ptr Output
+): bool {.importcpp: "Louvre::LCompositor::addOutput".}
+
+proc onAnticipatedObjectDestruction*(
+  compositor: ptr Compositor, objectType: ptr FactoryObject
+): ptr FactoryObject {.importc: "Louvre::LCompositor::onAnticipatedObjectDestruction".}
 
 {.pop.}
 
@@ -44,15 +67,14 @@ type
     ## Raised when `addOutput` fails to add an output to the compositor's list.
 
 proc getSurfaces*(compositor: Compositor): seq[ptr Surface] {.inline.} =
-  compositor
-    .surfaces()
-    .toSeq()
+  compositor.surfaces().toSeq()
 
 func getOutputs*(compositor: Compositor): seq[ptr Output] {.inline.} =
-  compositor
-    .outputs()
-    .toSeq()
+  compositor.outputs().toSeq()
 
-proc addOutput*(compositor: ptr Compositor, output: ptr Output) {.inline, raises: [CannotAddOutput].} =
+proc addOutput*(
+    compositor: ptr Compositor, output: ptr Output
+) {.inline, raises: [CannotAddOutput].} =
   if not compositor.addOutputInternal(output):
-    raise newException(CannotAddOutput, "Failed to add output to compositor's registry.")
+    raise
+      newException(CannotAddOutput, "Failed to add output to compositor's registry.")

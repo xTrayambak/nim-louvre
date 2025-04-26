@@ -1,11 +1,10 @@
 # Package
 
-version       = "2.13.0"
-author        = "xTrayambak"
-description   = "Nim bindings for Louvre"
-license       = "LGPL-2.1-or-later"
-srcDir        = "src"
-
+version = "2.13.0"
+author = "xTrayambak"
+description = "Nim bindings for Louvre"
+license = "LGPL-2.1-or-later"
+srcDir = "src"
 
 # Dependencies
 

@@ -4,11 +4,13 @@ import pkg/vmath
 
 type
   Point* {.importcpp: "Louvre::LPoint", inheritable.} = object
-  Size* {.importcpp: "Louvre::LSize".} = Point#object of Point
+  Size* {.importcpp: "Louvre::LSize".} = Point #object of Point
 
 func `x`*(point: Point): int32 {.importcpp: "@.x()".}
 func `y`*(point: Point): int32 {.importcpp: "@.y()".}
-func distanceFrom*(point1: ptr Point, point2: Point): int32 {.importcpp: "LPoint::distanceFrom".}
+func distanceFrom*(
+  point1: ptr Point, point2: Point
+): int32 {.importcpp: "LPoint::distanceFrom".}
 
 {.pop.}
 

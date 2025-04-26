@@ -3,9 +3,8 @@
 # remove this file altogether. You may create additional modules alongside
 # this file as required.
 
-type
-  Submodule* = object
-    name*: string
+type Submodule* = object
+  name*: string
 
 proc initSubmodule*(): Submodule =
   ## Initialises a new ``Submodule`` object.

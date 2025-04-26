@@ -6,8 +6,7 @@ import pkg/opengl
 {.emit: "#include <LOpenGL.h>".}
 {.emit: "#include <GLES2/gl2.h>".}
 
-type
-  ShaderCompilationFailure* = object of Defect
+type ShaderCompilationFailure* = object of Defect
 
 proc openShader*(file: string): Option[string] {.sideEffect.} =
   ## I'm too lazy to bind the `Louvre::LOpenGL::openShader` function so I just

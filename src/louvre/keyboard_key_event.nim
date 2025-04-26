@@ -7,7 +7,11 @@ type
 
   KeyboardKeyEvent* {.importcpp: "Louvre::LKeyboardKeyEvent", final.} = object
 
-func keyCode*(event: KeyboardKeyEvent): uint32 {.importcpp: "Louvre::LKeyboardKeyEvent::keyCode".}
-func state*(event: KeyboardKeyEvent): KeyEventState {.importcpp: "Louvre::LKeyboardKeyEvent::state".}
+func keyCode*(
+  event: KeyboardKeyEvent
+): uint32 {.importcpp: "Louvre::LKeyboardKeyEvent::keyCode".}
+func state*(
+  event: KeyboardKeyEvent
+): KeyEventState {.importcpp: "Louvre::LKeyboardKeyEvent::state".}
 
 {.pop.}

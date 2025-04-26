@@ -33,7 +33,9 @@ type
 
 func type*(event: Event): EventType {.importcpp: "Louvre::LEvent::type".}
 func subtype*(event: Event): EventSubtype {.importcpp: "Louvre::LEvent::subtype".}
-func `serial=`*(event: var Event, serial: uint32) {.importcpp: "Louvre::LEvent::setSerial".}
+func `serial=`*(
+  event: var Event, serial: uint32
+) {.importcpp: "Louvre::LEvent::setSerial".}
 func serial*(event: Event): uint32 {.importcpp: "Louvre::LEvent::serial".}
 func ms*(event: Event): uint32 {.importcpp: "Louvre::LEvent::ms".}
 func `ms=`*(event: var Event, ms: uint32) {.importcpp: "Louvre::LEvent::setMs".}
