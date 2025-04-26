@@ -78,6 +78,7 @@ proc resizeGL*(output: ptr Output) {.importcpp: "Louvre::LOutput::resizeGL".}
 proc uninitializeGL*(
   output: ptr Output
 ) {.importcpp: "Louvre::LOutput::uninitializeGL".}
+proc repaintFilter*(output: ptr Output): bool {.importc: "Louvre::LOutput::repaintFilter".}
 
 {.pop.}
 
