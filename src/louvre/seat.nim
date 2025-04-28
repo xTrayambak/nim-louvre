@@ -25,8 +25,13 @@ proc onEvent*(
 ) {.importcpp: "Louvre::LSeat::onEvent".}
 
 # Virtual methods
-proc nativeInputEvent*(seat: ptr Seat, event: pointer): void {.importc: "Louvre::LSeat::nativeInputEvent".}
-proc eventFilter*(seat: ptr Seat, event: var Event): bool {.importc: "Louvre::LSeat::eventFilter".}
+proc nativeInputEvent*(
+  seat: ptr Seat, event: pointer
+): void {.importc: "Louvre::LSeat::nativeInputEvent".}
+
+proc eventFilter*(
+  seat: ptr Seat, event: var Event
+): bool {.importc: "Louvre::LSeat::eventFilter".}
 
 {.pop.}
 
