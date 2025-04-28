@@ -23,6 +23,8 @@ type
 
   Output* {.importcpp: "Louvre::LOutput", inheritable.} = object of FactoryObject
 
+proc `=copy`*(dest: var Output, src: Output) {.error.}
+
 proc makeOutput*(
   params {.immutable.}: pointer
 ): Output {.importcpp: "`Output`(`params`);", constructor.}
@@ -78,7 +80,10 @@ proc resizeGL*(output: ptr Output) {.importcpp: "Louvre::LOutput::resizeGL".}
 proc uninitializeGL*(
   output: ptr Output
 ) {.importcpp: "Louvre::LOutput::uninitializeGL".}
-proc repaintFilter*(output: ptr Output): bool {.importc: "Louvre::LOutput::repaintFilter".}
+
+proc repaintFilter*(
+  output: ptr Output
+): bool {.importc: "Louvre::LOutput::repaintFilter".}
 
 {.pop.}
 
