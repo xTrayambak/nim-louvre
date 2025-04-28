@@ -16,13 +16,13 @@ when not defined(cpp):
   {.error: "This library only supports the C++ backend!".}
 
 import
-  louvre/[
+  pkg/louvre/[
     compositor, namespaces, launcher, output, gpu, seat, factory_object, utils, event,
     log, point, surface, toplevel, scene, view, scene_view, colors, keyboard,
-    keyboard_key_event, opengl, surface_view,
+    keyboard_key_event, opengl, surface_view, content_type, layers
   ]
 
 export
   compositor, namespaces, launcher, output, gpu, seat, factory_object, utils, event,
   log, surface, point, toplevel, scene, view, scene_view, colors, keyboard,
-  keyboard_key_event, opengl, surface_view
+  keyboard_key_event, opengl, surface_view, content_type, layers
