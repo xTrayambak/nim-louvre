@@ -1,8 +1,8 @@
-import pkg/louvre/[point, surface]
+import pkg/louvre/[point, surface, factory_object]
 
 {.push header: "<LPointer.h>".}
 
-type Pointer* {.importcpp: "Louvre::LPointer".} = object
+type Pointer* {.importcpp: "Louvre::LPointer".} = object of FactoryObject
 
 proc setFocus*(
   p: ptr Pointer, surface: ptr Surface, localPos: Point
