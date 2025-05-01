@@ -19,10 +19,10 @@ import
   pkg/louvre/[
     compositor, namespaces, launcher, output, gpu, seat, factory_object, utils, event,
     log, point, surface, toplevel, scene, view, scene_view, colors, keyboard,
-    keyboard_key_event, opengl, surface_view, content_type, layers, client
+    keyboard_key_event, opengl, surface_view, content_type, layers, client, lpointer,
   ]
 
 export
   compositor, namespaces, launcher, output, gpu, seat, factory_object, utils, event,
   log, surface, point, toplevel, scene, view, scene_view, colors, keyboard,
-  keyboard_key_event, opengl, surface_view, content_type, layers, client
+  keyboard_key_event, opengl, surface_view, content_type, layers, client, lpointer
