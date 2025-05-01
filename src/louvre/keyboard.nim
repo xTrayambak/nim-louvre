@@ -22,6 +22,9 @@ func pressed*(
 func pressedKeysInternal(
   keyboard: Keyboard
 ): CppVector[uint32] {.importcpp: "Louvre::LKeyboard::pressedKeys".}
+func keySymbol*(
+  keyboard: Keyboard, keyCode: uint32
+): uint32 {.importcpp: "Louvre::LKeyboard::keySymbol".}
 
 # Virtual methods
 proc keyEvent*(
