@@ -12,6 +12,8 @@ proc setFocus*(
   p: ptr Pointer, surface: ptr Surface
 ) {.importcpp: "Louvre::LPointer::setFocus".}
 
+proc focus*(p: Pointer): ptr Surface {.importcpp: "Louvre::LPointer::focus".}
+
 proc setDraggingSurface*(
   p: ptr Pointer, surface: ptr Surface
 ) {.importcpp: "Louvre::LPointer::setDraggingSurface".}
