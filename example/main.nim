@@ -30,9 +30,6 @@ proc initialized(compositor: ptr NimWM) {.virtual.} =
 
   comp.initialized()
 
-  for i, output in outputs:
-    echo "> Output " & $i & ": " & $output[].getState()
-
 proc createObjectRequest(
     compositor: ptr NimWM, objectType: FactoryObjectType, params {.immutable.}: pointer
 ): ptr FactoryObject {.virtual.} =

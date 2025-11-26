@@ -1,0 +1,15 @@
+[package]
+name = "louvre"
+description = "Nim bindings for Louvre"
+version = "0.1.0"
+license = "LGPL-2.1-or-later"
+kind = "Library"
+backend = "C"
+binaries = []
+
+[toolchain]
+version = "2.0.0"
+
+[dependencies]
+colored_logger = ">= 0.1.0"
+cppstl = ">= 0.7.0"
