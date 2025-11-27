@@ -58,6 +58,20 @@ proc requestNextFrame*(
 func preferVSync*(surf: Surface): bool {.importcpp: "Louvre::LSurface::preferVSync".}
 
 proc sizeChanged(surf: ptr Surface) {.importcpp: "Louvre::LSurface::sizeChanged".}
+proc srcRectChanged(surf: ptr Surface) {.importcpp: "Louvre::LSurface::srcRectChanged".}
+proc opaqueRegionChanged(
+  surf: ptr Surface
+) {.importcpp: "Louvre::LSurface::opaqueRegionChanged".}
+
+proc invisibleRegionChanged(
+  surf: ptr Surface
+) {.importcpp: "Louvre::LSurface::invisibleRegionChanged".}
+
+proc inputRegionChanged(
+  surf: ptr Surface
+) {.importcpp: "Louvre::LSurface::inputRegionChanged".}
+
+proc orderChanged(surf: ptr Surface) {.importcpp: "Louvre::LSurface::orderChanged".}
 
 {.pop.}
 
