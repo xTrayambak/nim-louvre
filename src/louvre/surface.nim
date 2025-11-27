@@ -57,6 +57,8 @@ proc requestNextFrame*(
 
 func preferVSync*(surf: Surface): bool {.importcpp: "Louvre::LSurface::preferVSync".}
 
+proc sizeChanged(surf: ptr Surface) {.importcpp: "Louvre::LSurface::sizeChanged".}
+
 {.pop.}
 
 proc resize*(surf: ptr Surface, size: Size) {.inline.} =
