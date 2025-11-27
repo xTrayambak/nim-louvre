@@ -1,5 +1,5 @@
 import std/logging
-import louvre/[toplevel, point, output]
+import louvre/[client, toplevel, point, output]
 import pkg/cppstl/std_vector
 
 {.push header: "<LSurface.h>".}
@@ -75,6 +75,8 @@ proc inputRegionChanged*(
 ) {.importcpp: "Louvre::LSurface::inputRegionChanged".}
 
 proc orderChanged*(surf: ptr Surface) {.importcpp: "Louvre::LSurface::orderChanged".}
+
+proc getClient*(surf: Surface): ptr Client {.importcpp: "Louvre::LSurface::client".}
 
 {.pop.}
 

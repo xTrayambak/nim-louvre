@@ -1,7 +1,7 @@
 [package]
 name = "louvre"
 description = "Nim bindings for Louvre"
-version = "0.1.1"
+version = "0.1.2"
 license = "LGPL-2.1-or-later"
 kind = "Library"
 backend = "C"
